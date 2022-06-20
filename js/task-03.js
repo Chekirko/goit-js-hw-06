@@ -15,12 +15,20 @@ const images = [
 
 const list = document.querySelector('.gallery');
 
-const items = images.map(image => {
-  const { url, alt } = image;
-  const liEl = document.createElement('li');
-  liEl.classList.add('gallery__item');
-  liEl.insertAdjacentHTML('afterbegin', `<img class="gallery__img" src=${url}, alt=${alt}>`);
-  return liEl;
-});
+// const items = images.map(image => {
+//   const { url, alt } = image;
+//   const liEl = document.createElement('li');
+//   liEl.classList.add('gallery__item');
+//   liEl.insertAdjacentHTML('afterbegin', `<img class="gallery__img" src=${url}, alt=${alt}>`);
+//   return liEl;
+// });
 
-list.append(...items);
+// list.append(...items);
+
+const itemsMarkup = images
+  .map(({ url, alt }) => {
+    return `<li class="gallery_item"><img class="gallery__img" src=${url}, alt=${alt}></li>`;
+  })
+  .join(' ');
+
+list.insertAdjacentHTML('afterbegin', itemsMarkup);
